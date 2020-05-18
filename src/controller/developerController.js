@@ -1,4 +1,5 @@
 const axios = require('axios'); // Allow us to make reqs at APIs
+const developer = require('../model/developer')
 
 // The developerController is an object
 module.exports = {
@@ -13,7 +14,21 @@ module.exports = {
 
         const response = await axios.get(`https://api.github.com/users/${username}`)
 
-        return res.json(response.data);
+        // console.log(response.data)
+
+        const { name, bio, avatar_url: avatar } = response.data;
+
+        const dev = await developer.create({
+            name,
+            user : username,
+            bio,
+            avatar
+        })
+
+        // console.log(dev.data) // Took much time
+
+        // Taking much time
+        return res.json(dev);
     }
 
     // Update
