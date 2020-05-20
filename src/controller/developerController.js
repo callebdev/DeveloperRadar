@@ -50,9 +50,5 @@ module.exports = {
     // Favorite
 
 
-    // Search
-
-
-
-    // List
+    // Auto-List
 };
